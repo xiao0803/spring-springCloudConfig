@@ -1,0 +1,29 @@
+server:
+  port: 8002
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  application:
+    name: spring-cloud-config-client
+  cloud:
+    config:
+      #name: neo-config
+      #profile: dev
+      name: db-service
+      profile: dev
+      label: dev
+      retry:
+        initial-interval: 2000
+        max-interval: 10000
+        multiplier: 2
+        max-attempts: 10
+      discovery:
+        #从配置中心读取配置
+        enabled: true
+        serviceId: spring-cloud-config-server   #配置中心服务实例名
+    bus:
+      trace:
+        enabled: true   #开启消息跟踪
